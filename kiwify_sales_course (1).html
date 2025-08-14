@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Kiwify - Como Vender Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 20px 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1.2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FFD700, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+            background-size: 300% 100%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .course-title {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Course Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Price Section */
+        .price-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 50px;
+            border-radius: 25px;
+            color: white;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .price-section::before {
+            content: '🔥';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 4rem;
+            opacity: 0.3;
+            animation: bounce 2s infinite;
+        }
+
+        .original-price {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .current-price {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .currency {
+            font-size: 2rem;
+        }
+
+        /* Coupon Section */
+        .coupon-section {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            animation: glow 2s infinite;
+        }
+
+        .coupon-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .coupon-code {
+            font-size: 2rem;
+            background: white;
+            color: #2c3e50;
+            padding: 15px 30px;
+            border-radius: 15px;
+            display: inline-block;
+            font-weight: bold;
+            letter-spacing: 3px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .coupon-code:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .coupon-discount {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Buy Button */
+        .buy-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 20px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .buy-button:hover:before {
+            left: 100%;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(231, 76, 60, 0.6);
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+        }
+
+        /* Urgency Section */
+        .urgency {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        .urgency h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .urgency p {
+            font-size: 1.2rem;
+        }
+
+        /* Benefits List */
+        .benefits {
+            margin: 40px 0;
+        }
+
+        .benefits h3 {
+            color: #2c3e50;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .benefit-check {
+            color: #27ae60;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .current-price {
+                font-size: 3rem;
+            }
+            
+            .buy-button {
+                font-size: 1.4rem;
+                padding: 15px 40px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sparkle Animation */
+        .sparkle {
+            position: absolute;
+            color: #FFD700;
+            font-size: 1rem;
+            animation: sparkle 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">💰 VENDAS MASTER</div>
+            <div class="subtitle">Domine as vendas online e transforme sua vida</div>
+        </header>
+
+        <main class="main-content">
+            <h1 class="course-title">
+                <span class="highlight">COMO VENDER NA KIWIFY</span><br>
+                DO INICIANTE AO PROFISSIONAL
+            </h1>
+
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">💸</span>
+                    <h3>Vendas de Alto Ticket</h3>
+                    <p>Aprenda a vender produtos digitais de alto valor e gerar renda consistente</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📈</span>
+                    <h3>Estratégias Comprovadas</h3>
+                    <p>Técnicas e métodos já testados por milhares de afiliados de sucesso</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🚀</span>
+                    <h3>Suporte Completo</h3>
+                    <p>Acompanhamento total para você não ficar perdido e alcançar seus objetivos</p>
+                </div>
+            </div>
+
+            <div class="benefits">
+                <h3>🎯 O que você vai aprender:</h3>
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <span>Como escolher os melhores produtos para promover na Kiwify</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <span>Estratégias de copywriting que convertem</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <span>Como criar landing pages de alta conversão</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <span>Tráfego orgânico e pago para suas ofertas</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <span>Automação de vendas e funis de conversão</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <span>Como escalar seus resultados e ganhar mais</span>
+                </div>
+            </div>
+
+            <div class="urgency">
+                <h3>🔥 OFERTA ESPECIAL DE LANÇAMENTO!</h3>
+                <p>Últimas vagas com desconto exclusivo para quem quer começar hoje!</p>
+            </div>
+
+            <div class="price-section">
+                <div class="original-price">De R$ 30,00</div>
+                <div class="current-price">
+                    <span class="currency">R$</span> 14<sup>,99</sup>
+                </div>
+                <p>💳 Pagamento único - Acesso vitalício</p>
+            </div>
+
+            <div class="coupon-section">
+                <div class="coupon-title">🎉 USE O CUPOM E GANHE 50% DE DESCONTO!</div>
+                <div class="coupon-code" onclick="copyToClipboard('VENDAS50')">VENDAS50</div>
+                <div class="coupon-discount">Desconto de 50% aplicado automaticamente!</div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="https://pay.kiwify.com.br/gHeamGL" class="buy-button" target="_blank">
+                    🛒 QUERO VENDER NA KIWIFY AGORA!
+                </a>
+                <br>
+                <p style="color: #7f8c8d; margin-top: 20px;">
+                    🔒 Compra 100% Segura | 💯 Garantia de 7 dias
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Adiciona sparkles animados
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // Cria sparkles a cada 2 segundos
+        setInterval(createSparkle, 2000);
+
+        // Função para copiar cupom
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Cupom "' + text + '" copiado para a área de transferência!');
+            });
+        }
+
+        // Animação de entrada dos elementos
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature, .benefit-item');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = (index * 0.1) + 's';
+                element.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            });
+        }
+
+        // Executa animações quando a página carrega
+        window.addEventListener('load', animateOnScroll);
+
+        // Adiciona efeito de hover nos botões
+        document.querySelector('.buy-button').addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.05)';
+        });
+
+        document.querySelector('.buy-button').addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    </script>
+</body>
+</html>
